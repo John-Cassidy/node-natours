@@ -3,16 +3,29 @@ const express = require('express');
 
 const app = express();
 
+// 1) MIDDLEWARES
 app.use(express.json()); // add body of request to req object
+app.use((req, res, next) => {
+  console.log('Hello from the midleware');
+  next();
+});
+app.use((req, res, next) => {
+  req.requestTime = new Date().toISOString();
+  next();
+});
 
 const tours = JSON.parse(
   fs.readFileSync(`${__dirname}/dev-data/data/tours-simple.json`)
 );
 
+// 2) FUNCTIONS
 getAllTours = (req, res) => {
   // return all tours-simple.json
+  console.log(req.requestTime);
+
   res.status(200).json({
     status: 'success',
+    requestedAt: req.requestTime,
     results: tours.length,
     data: {
       tours,

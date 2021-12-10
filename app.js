@@ -21,7 +21,9 @@ const tours = JSON.parse(
 );
 
 // 2) ROUTE HANDLERS
-getAllTours = (req, res) => {
+
+// TOURS
+const getAllTours = (req, res) => {
   // return all tours-simple.json
   console.log(req.requestTime);
 
@@ -34,7 +36,7 @@ getAllTours = (req, res) => {
     },
   });
 };
-getTour = (req, res) => {
+const getTour = (req, res) => {
   // return single tour
   const id = req.params.id * 1;
 
@@ -54,7 +56,7 @@ getTour = (req, res) => {
     },
   });
 };
-createTour = (req, res) => {
+const createTour = (req, res) => {
   const newId = tours[tours.length - 1].id + 1;
   const newTour = Object.assign({ id: newId }, req.body);
   tours.push(newTour);
@@ -72,7 +74,7 @@ createTour = (req, res) => {
     }
   );
 };
-updateTour = (req, res) => {
+const updateTour = (req, res) => {
   const id = req.params.id * 1;
 
   const tour = tours.find((x) => x.id === id);
@@ -90,7 +92,7 @@ updateTour = (req, res) => {
     },
   });
 };
-deleteTour = (req, res) => {
+const deleteTour = (req, res) => {
   const id = req.params.id * 1;
 
   const tour = tours.find((x) => x.id === id);
@@ -107,13 +109,38 @@ deleteTour = (req, res) => {
   });
 };
 
+// USERS
+const getAllUsers = (req, res) => {
+  res.status(500).json({
+    status: 'error',
+    message: 'This route is not yet defined',
+  });
+};
+const getUser = (req, res) => {
+  res.status(500).json({
+    status: 'error',
+    message: 'This route is not yet defined',
+  });
+};
+const createUser = (req, res) => {
+  res.status(500).json({
+    status: 'error',
+    message: 'This route is not yet defined',
+  });
+};
+const updateUser = (req, res) => {
+  res.status(500).json({
+    status: 'error',
+    message: 'This route is not yet defined',
+  });
+};
+const deleteUser = (req, res) => {
+  res.status(500).json({
+    status: 'error',
+    message: 'This route is not yet defined',
+  });
+};
 // 3) ROUTES
-
-// app.get('/api/v1/tours', getAllTours);
-// app.get('/api/v1/tours/:id', getTour);
-// app.post('/api/v1/tours', createTour);
-// app.patch('/api/v1/tours/:id', updateTour);
-// app.delete('/api/v1/tours/:id', deleteTour);
 
 app.route('/api/v1/tours').get(getAllTours).post(createTour);
 app
@@ -121,6 +148,13 @@ app
   .get(getTour)
   .patch(updateTour)
   .delete(deleteTour);
+
+app.route('/api/v1/users').get(getAllUsers).post(createUser);
+app
+  .route('/api/v1/users/:id')
+  .get(getUser)
+  .patch(updateUser)
+  .delete(deleteUser);
 
 // 4) START SERVER
 const port = 3000;

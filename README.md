@@ -7,3 +7,7 @@
 ## install Express
 
 npm i express
+
+## install morgan
+
+npm i morgan

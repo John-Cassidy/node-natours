@@ -11,3 +11,16 @@ npm i express
 ## install morgan
 
 npm i morgan
+
+## install dotenv
+
+npm i dotenv
+
+- you may also want to add the dotenv extension
+
+## create .env file that server.js will import
+
+NODE_ENV=development
+PORT=3000
+USERNAME=john
+PASSWORD=123456

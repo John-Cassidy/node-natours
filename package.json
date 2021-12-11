@@ -5,11 +5,13 @@
   "main": "app.js",
   "scripts": {
     "start": "nodemon server.js",
+    "start:prod": "NODE_ENV=production nodemon server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "John Cassidy",
   "license": "MIT",
   "dependencies": {
+    "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "morgan": "^1.10.0"
   },

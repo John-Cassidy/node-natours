@@ -24,3 +24,12 @@ NODE_ENV=development
 PORT=3000
 USERNAME=john
 PASSWORD=123456
+
+## setting up ESLint + Prettier in VS Code
+
+install eslint extension
+install prettier extension
+
+install packages: eslint prettier
+
+> npm i eslint prettier eslint-config-prettier eslint-plugin-prettier eslint-config-airbnb eslint-plugin-node eslint-plugin-import eslint-plugin-jsx-a11y eslint-plugin-react -D

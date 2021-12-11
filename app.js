@@ -9,6 +9,8 @@ const app = express();
 // 1) MIDDLEWARES
 app.use(morgan('dev'));
 app.use(express.json()); // add body of request to req object
+app.use(express.static(`${__dirname}/public`));
+
 app.use((req, res, next) => {
   console.log('Hello from the midleware');
   next();

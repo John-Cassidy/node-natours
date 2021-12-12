@@ -108,3 +108,16 @@ exit interactive terminal into container
 setup MongoDB Client docker container. [Official docker image](https://hub.docker.com/r/mongoclient/mongoclient)
 
 docker run -d -p 3000:3000 mongoclient/mongoclient
+
+### update mongodb connection in .env file
+
+NODE_ENV=development
+PORT=4000
+DATABASE=mongodb+srv://<USER>:<PASSWORD>@cluster0-pwikv.mongodb.net/natours?retryWrites=true
+DATABASE_LOCAL=mongodb://localhost:27017/natours
+DATABASE_USERNAME=john
+DATABASE_PASSWORD=123456
+
+### install mongoose v5
+
+npm i mongoose@5

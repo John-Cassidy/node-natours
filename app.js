@@ -14,6 +14,7 @@ app.use(express.json()); // add body of request to req object
 app.use(express.static(`${__dirname}/public`));
 
 app.use((req, res, next) => {
+  // eslint-disable-next-line no-console
   console.log('Hello from the midleware');
   next();
 });

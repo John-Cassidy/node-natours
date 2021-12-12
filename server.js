@@ -20,6 +20,7 @@ mongoose
     useFindAndModify: false,
   })
   .then(() => {
+    // then((con) => {
     // console.log(con.connection);
     // eslint-disable-next-line no-console
     console.log('DB connection successful!');

@@ -21,7 +21,7 @@ npm i dotenv
 ## create .env file that server.js will import
 
 NODE_ENV=development
-PORT=3000
+PORT=4000
 USERNAME=john
 PASSWORD=123456
 
@@ -58,17 +58,40 @@ create new database
 create collection
 
 > db.createCollection('tours')
-> db.tours.insert or db.tours.insertMany - insert items into collection
+
+insert
+
+> db.tours.insertOne or db.tours.insertMany - insert items into collection
+> db.tours.insertOne({\_id: ObjectId("5c88fa8cf4afda39709c2959"), name: "The Forest Hiker", price: 397, rating: 4.7})
+
+update
+
+> db.tours.updateOne or db.tours.updateMany
+> db.tours.updateOne( { name: "The Snow Adventurer" }, { $set: { price: 597 } })
+> db.tours.updateMany( { price: { $lt: 500 } }, { $set: { price: 500 } })
+> db.tours.updateMany({ price: { $gt: 500 }, rating: { $gte: 4.8 } }, { $set: { premium: true } })
 
 show databases
 
 > show dbs
 
-show collections
+query collections
 
 > db.tours.find({}).pretty()
+> db.tours.find({ name: "The Forest Hiker" }).pretty()
+> db.tours.find({ difficulty: "easy" }).pretty()
+> db.tours.find({ price: { $lte: 500 } }).pretty()
+> db.tours.find({ price: { $lt: 500 }, rating: { $gte: 4.8 } }).pretty()
+> db.tours.find({ $or: [ { price: { $lt: 500 }}, { rating: { $gte: 4.8 }} ] }).pretty()
+> db.tours.find({ $or: [ { price: { $gt: 500 }}, { rating: { $gte: 4.8 }} ] }).pretty()
+> db.tours.find({ $or: [ { price: { $gt: 500 }}, { rating: { $gte: 4.8 }} ] }, { name: 1 }).pretty()
 
-remove collesions
+delete
+
+> db.tours.deleteMany({ rating: { $lt: 4.8 }})
+> db.tours.deleteMany({}) - DELETES ALL RECORDS
+
+remove collections
 
 > db.tours.remove({})
 
@@ -79,3 +102,9 @@ quit mongo shell
 exit interactive terminal into container
 
 > exit
+
+### Mongo client
+
+setup MongoDB Client docker container. [Official docker image](https://hub.docker.com/r/mongoclient/mongoclient)
+
+docker run -d -p 3000:3000 mongoclient/mongoclient

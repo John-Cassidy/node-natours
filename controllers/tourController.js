@@ -3,8 +3,36 @@ const Tour = require('../models/tourModel');
 // ROUTER HANDLERS
 exports.getAllTours = async (req, res) => {
   try {
-    const tours = await Tour.find();
+    // console.log(req.query);
 
+    // const tours = await Tour.find({
+    //   duration: 5,
+    //   difficulty: 'easy',
+    // });
+
+    // const tours = await Tour.find()
+    //   .where('duration')
+    //   .equals(5)
+    //   .where('difficulty')
+    //   .equals('easy');
+
+    // const tours = await Tour.find();
+
+    //#region BUILD QUERY
+    // CREATE COPY OF QUERY OBJECT
+    const queryObj = { ...req.query };
+
+    // EXCLUDE
+    const excludedFields = ['page', 'sort', 'limit', 'fields'];
+    excludedFields.forEach((el) => delete queryObj[el]);
+
+    const query = Tour.find(queryObj);
+    //#endregion BUILD QUERY
+
+    // EXECUTE QUERY
+    const tours = await query;
+
+    // SEND RESPONSE
     res.status(200).json({
       status: 'success',
       requestedAt: req.requestTime,

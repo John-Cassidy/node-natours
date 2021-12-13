@@ -123,3 +123,24 @@ DATABASE_PASSWORD=123456
 npm i mongoose@5
 
 [CRUD Operations](https://mongoosejs.com/docs/queries.html)
+
+### import/delete dev data into DB from tours-simple.json
+
+The file `dev-data\data\import-dev-data.js` has 2 functions:
+
+> importData()
+> deleteData()
+
+run the functions by passing in following arguments:
+
+```bash
+    node dev-data/data/import-dev-data.js --import
+
+    node dev-data/data/import-dev-data.js --delete
+```
+
+```cmd
+    node dev-data\data\import-dev-data.js --import
+
+    node dev-data\data\import-dev-data.js --delete
+```

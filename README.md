@@ -121,3 +121,5 @@ DATABASE_PASSWORD=123456
 ### install mongoose v5
 
 npm i mongoose@5
+
+[CRUD Operations](https://mongoosejs.com/docs/queries.html)

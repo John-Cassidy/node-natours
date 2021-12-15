@@ -144,3 +144,7 @@ run the functions by passing in following arguments:
 
     node dev-data\data\import-dev-data.js --delete
 ```
+
+## install slugify
+
+npm i slugify

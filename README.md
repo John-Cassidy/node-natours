@@ -148,3 +148,10 @@ run the functions by passing in following arguments:
 ## install slugify
 
 npm i slugify
+
+## install validator
+
+use this if you want to customized functions that it provides for validation
+note: isAlpha() function breaks if you pass a string with spaces in between words
+
+npm i validator

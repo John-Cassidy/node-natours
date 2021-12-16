@@ -1,6 +1,21 @@
 const dotenv = require('dotenv');
 const mongoose = require('mongoose');
 
+process.on('uncaughtException', (err) => {
+  // eslint-disable-next-line no-console
+  console.log('UNCAUGHT EXCEPTION! 💥 Shutting down...');
+
+  if (process.env.NODE_ENV === 'development') {
+    // eslint-disable-next-line no-console
+    console.log(err.name, err.message, err.stack);
+  } else {
+    // eslint-disable-next-line no-console
+    console.log(err.name, err.message);
+  }
+
+  process.exit(1);
+});
+
 dotenv.config({ path: './.env' });
 const app = require('./app');
 

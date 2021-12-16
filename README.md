@@ -155,3 +155,11 @@ use this if you want to customized functions that it provides for validation
 note: isAlpha() function breaks if you pass a string with spaces in between words
 
 npm i validator
+
+## install ndb
+
+[Link](https://github.com/GoogleChromeLabs/ndb)
+
+npm i ndb -g
+or
+npm i ndb -D

@@ -170,3 +170,7 @@ npm i validator
 npm i ndb -g
 or
 npm i ndb -D
+
+## install bcryptjs
+
+npm i bcryptjs

@@ -77,6 +77,8 @@ show databases
 
 query collections
 
+tours
+
 > db.tours.find({}).pretty()
 > db.tours.find({ name: "The Forest Hiker" }).pretty()
 > db.tours.find({ difficulty: "easy" }).pretty()
@@ -86,6 +88,10 @@ query collections
 > db.tours.find({ $or: [ { price: { $gt: 500 }}, { rating: { $gte: 4.8 }} ] }).pretty()
 > db.tours.find({ $or: [ { price: { $gt: 500 }}, { rating: { $gte: 4.8 }} ] }, { name: 1 }).pretty()
 
+users
+
+> db.users.find({}).pretty()
+
 delete
 
 > db.tours.deleteMany({ rating: { $lt: 4.8 }})
@@ -94,6 +100,7 @@ delete
 remove collections
 
 > db.tours.remove({})
+> db.users.remove({})
 
 quit mongo shell
 

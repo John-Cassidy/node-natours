@@ -174,3 +174,15 @@ npm i ndb -D
 ## install bcryptjs
 
 npm i bcryptjs
+
+## Authentication and Authorization
+
+### install jsonwebtoken
+
+npm i jsonwebtoken
+
+### add evnironment variables to .env file
+
+JWT_SECRET=my-ultra-secure-and-ultra-long-secret
+JWT_EXPIRES_IN=90d
+JWT_COOKIE_EXPIRES_IN=90

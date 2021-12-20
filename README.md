@@ -96,6 +96,7 @@ delete
 
 > db.tours.deleteMany({ rating: { $lt: 4.8 }})
 > db.tours.deleteMany({}) - DELETES ALL RECORDS
+> db.users.deleteMany({})
 
 remove collections
 

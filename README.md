@@ -187,3 +187,20 @@ npm i jsonwebtoken
 JWT_SECRET=my-ultra-secure-and-ultra-long-secret
 JWT_EXPIRES_IN=90d
 JWT_COOKIE_EXPIRES_IN=90
+
+## add email functionality for development
+
+### install nodemailer
+
+npm i nodemailer
+
+### setup mailtrap service
+
+register account at [https://mailtrap.io/](https://mailtrap.io/)
+
+add environment variables in .env file
+
+EMAIL_USERNAME=a124458539192a
+EMAIL_PASSWORD=1e3caf48074eba
+EMAIL_HOST=smtp.mailtrap.io
+EMAIL_PORT=25

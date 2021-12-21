@@ -250,3 +250,15 @@ npm i helmet
 > Confirm user email address after first creating account
 > Keep user logged in with refresh tokens
 > Implement two-factor authentication Prevent parameter pollution causing Uncaught Exceptions
+
+#### install cross site forgery and data sanitation security packages
+
+npm i express-mongo-sanitize
+npm i xss-clean
+
+#### install hpp package to remove array paramaters passed in
+
+if you pass in sort=price&sort=duration, then node will create a sort[].
+this package will keep this as a single object, not an array.
+
+npm i hpp

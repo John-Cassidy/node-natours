@@ -33,6 +33,19 @@ const reviewSchema = new mongoose.Schema(
   }
 );
 
+// populate tour and user info
+reviewSchema.pre(/^find/, function (next) {
+  this.populate({
+    path: 'tour',
+    select: 'name', // include all properties you want
+  }).populate({
+    path: 'user',
+    select: 'name photo', // include all properties you want
+  });
+
+  next();
+});
+
 const Review = mongoose.model('Review', reviewSchema);
 
 module.exports = Review;

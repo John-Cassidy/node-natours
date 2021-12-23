@@ -151,10 +151,11 @@ tourSchema.pre(/^find/, function (next) {
   next();
 });
 
+// populate guides array with user table information, filter out fields you don't want
 tourSchema.pre(/^find/, function (next) {
   this.populate({
     path: 'guides',
-    select: '-__v -passwordChangedAt',
+    select: '-__v -passwordChangedAt', // filter out properties from user table by prefixing field name with minus sign
   });
 
   next();

@@ -106,6 +106,7 @@ remove collections
 
 > db.tours.remove({})
 > db.users.remove({})
+> db.reviews.remove({})
 
 quit mongo shell
 

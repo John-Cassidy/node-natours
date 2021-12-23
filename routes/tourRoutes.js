@@ -1,10 +1,28 @@
 const express = require('express');
 const tourController = require('../controllers/tourController');
 const authController = require('../controllers/authController');
-const reviewController = require('../controllers/reviewController');
+// eslint-disable-next-line import/no-useless-path-segments
+const reviewRouter = require('../routes/reviewRoutes');
 
 // ROUTER
 const router = express.Router();
+
+// NESTED ROUTES
+// POST /tour/234/reviews
+// GET /tour/234/reivews
+// GET /tour 234/reviews/345
+
+// SIMPLE NESTING ROUTES
+// router
+//   .route('/:tourId/reviews')
+//   .post(
+//     authController.protect,
+//     authController.restrictTo('user'),
+//     reviewController.createReview
+//   );
+
+// MOUNT NESTED ROUTER
+router.use('/:tourId/reviews', reviewRouter);
 
 router
   .route('/top-5-cheap')
@@ -26,19 +44,6 @@ router
     authController.protect,
     authController.restrictTo('admin', 'lead-guide'),
     tourController.deleteTour
-  );
-
-// NESTED ROUTES
-// POST /tour/234/reviews
-// GET /tour/234/reivews
-// GET /tour 234/reviews/345
-
-router
-  .route('/:tourId/reviews')
-  .post(
-    authController.protect,
-    authController.restrictTo('user'),
-    reviewController.createReview
   );
 
 module.exports = router;

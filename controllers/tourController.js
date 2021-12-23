@@ -32,8 +32,13 @@ exports.getAllTours = catchAsync(async (req, res, next) => {
   });
 });
 exports.getTour = catchAsync(async (req, res, next) => {
-  const tour = await Tour.findById(req.params.id);
   // Tour.findOne({ _id: req.params.id })
+  // const tour = await Tour.findById(req.params.id).populate('guides'); // get all properties of users table
+  const tour = await Tour.findById(req.params.id).populate({
+    // get only properties of user table  you want
+    path: 'guides',
+    select: '-__v -passwordChangedAt', // filter out properties by putting minus sign before property name
+  });
 
   if (!tour) {
     return next(new AppError('No tour found with that ID', 404));

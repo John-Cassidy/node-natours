@@ -92,6 +92,10 @@ users
 
 > db.users.find({}).pretty()
 
+reviews
+
+> db.reviews.find({}).pretty()
+
 delete
 
 > db.tours.deleteMany({ rating: { $lt: 4.8 }})

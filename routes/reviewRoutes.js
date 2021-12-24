@@ -13,20 +13,18 @@ const router = express.Router({ mergeParams: true }); // mergeParams will merge 
 router
   .route('/')
   .get(authController.protect, reviewController.getAllReviews)
-  .post(
-    authController.protect,
-    authController.restrictTo('user'),
-    reviewController.createReview
-  );
+  .post(authController.restrictTo('user'), reviewController.createReview);
 
 router
   .route('/:id')
   .get(reviewController.getReview)
-  .patch(reviewController.updateReview);
-//   .delete(
-//     authController.protect,
-//     authController.restrictTo('admin', 'lead-guide'),
-//     reviewController.deleteReview
-//   );
+  .patch(
+    authController.restrictTo('user', 'admin'),
+    reviewController.updateReview
+  )
+  .delete(
+    authController.restrictTo('admin', 'lead-guide'),
+    reviewController.deleteReview
+  );
 
 module.exports = router;

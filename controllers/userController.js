@@ -11,6 +11,11 @@ const filterObj = (obj, ...allowedFields) => {
   return newObj;
 };
 
+exports.getMe = (req, res, next) => {
+  req.params.id = req.user.id;
+  next();
+};
+
 // ROUTE HANDLERS USERS
 // exports.getAllUsers = catchAsync(async (req, res, next) => {
 //   const users = await User.find();

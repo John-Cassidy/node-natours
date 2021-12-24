@@ -5,6 +5,8 @@ const authController = require('../controllers/authController');
 // ROUTER
 const router = express.Router({ mergeParams: true }); // mergeParams will merge parent router params into this router params
 
+router.use(authController.protect);
+
 // NESTED ROUTES
 // POST /tour/234/reviews
 // GET /tour/234/reivews
@@ -12,8 +14,12 @@ const router = express.Router({ mergeParams: true }); // mergeParams will merge 
 
 router
   .route('/')
-  .get(authController.protect, reviewController.getAllReviews)
-  .post(authController.restrictTo('user'), reviewController.createReview);
+  .get(reviewController.getAllReviews)
+  .post(
+    authController.restrictTo('user'),
+    reviewController.setTourUserIds,
+    reviewController.createReview
+  );
 
 router
   .route('/:id')
@@ -23,7 +29,7 @@ router
     reviewController.updateReview
   )
   .delete(
-    authController.restrictTo('admin', 'lead-guide'),
+    authController.restrictTo('user', 'admin'),
     reviewController.deleteReview
   );
 

@@ -7,7 +7,9 @@
     "start": "nodemon server.js",
     "start:prod": "NODE_ENV=production nodemon server.js",
     "debug": "ndb server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "test-data:delete": "node dev-data\\data\\import-dev-data.js --delete",
+    "test-data:import": "node dev-data\\data\\import-dev-data.js --import"
   },
   "author": "John Cassidy",
   "license": "MIT",

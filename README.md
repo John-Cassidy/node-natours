@@ -267,3 +267,40 @@ if you pass in sort=price&sort=duration, then node will create a sort[].
 this package will keep this as a single object, not an array.
 
 npm i hpp
+
+## Import Test Data for: Tours, Reviews, Users
+
+NOTE - all test user passwords: test1234
+
+1 use the updated import-dev-data.js file
+2 use the npm run script commands in package.json
+
+> test-data:delete
+> test-data:import
+
+3 comment out following code in usermodel.js so encryption does not occur.
+this is because users.json password values are already encrypted.
+
+```javascript
+userSchema.pre('save', async function (next) {
+  // Only run this function if password was actually modified
+  if (!this.isModified('password')) return next();
+
+  // Hash the password with cost of 12
+  this.password = await bcrypt.hash(this.password, 12);
+
+  // Delete passwordConfirm field
+  this.passwordConfirm = undefined;
+  next();
+});
+
+userSchema.pre('save', function (next) {
+  if (!this.isModified('password') || this.isNew) return next();
+
+  this.passwordChangedAt = Date.now() - 1000;
+  next();
+});
+```
+
+4 run delete test data script
+5 run import test data script

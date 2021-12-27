@@ -304,3 +304,20 @@ userSchema.pre('save', function (next) {
 
 4 run delete test data script
 5 run import test data script
+
+## Improving Read Performance with Indexes
+
+add indexes on fields that are queried often
+
+```javascript
+// ADD INDEXES TO MODEL
+// single field index
+tourSchema.index({ price: 1 });
+// multi field index. this index works when user queries by single field query.
+tourSchema.index({ price: 1, ratingsAverage: -1 });
+tourSchema.index({ slug: 1 });
+tourSchema.index({ startLocation: '2dsphere' });
+
+// ADD TEST CODE TO CONFIRM INDEXES WORKING in factory get method - handlerFactory.js.exports.getAll
+const doc = await features.query.explain();
+```

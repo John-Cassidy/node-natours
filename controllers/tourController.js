@@ -1,6 +1,7 @@
 const Tour = require('../models/tourModel');
 const catchAsync = require('../utils/catchAsync');
 const factory = require('./handlerFactory');
+const AppError = require('./../utils/appError');
 
 // ROUTER MIDDLEWARE
 exports.aliasTopTours = (req, res, next) => {
@@ -11,41 +12,6 @@ exports.aliasTopTours = (req, res, next) => {
 };
 
 // ROUTER HANDLERS
-// exports.getAllTours = catchAsync(async (req, res, next) => {
-//   // EXECUTE QUERY
-//   const features = new APIFeatures(Tour.find(), req.query)
-//     .filter()
-//     .sort()
-//     .limitFields()
-//     .paginate();
-//   const tours = await features.query;
-
-//   // SEND RESPONSE
-//   res.status(200).json({
-//     status: 'success',
-//     requestedAt: req.requestTime,
-//     results: tours.length,
-//     data: {
-//       tours,
-//     },
-//   });
-// });
-// exports.getTour = catchAsync(async (req, res, next) => {
-//   // Tour.findOne({ _id: req.params.id })
-//   // const tour = await Tour.findById(req.params.id).populate('guides'); // get all properties of users table
-//   const tour = await Tour.findById(req.params.id).populate('reviews');
-
-//   if (!tour) {
-//     return next(new AppError('No tour found with that ID', 404));
-//   }
-
-//   res.status(200).json({
-//     status: 'success',
-//     data: {
-//       tour,
-//     },
-//   });
-// });
 exports.getAllTours = factory.getAll(Tour);
 exports.getTour = factory.getOne(Tour, { path: 'reviews' });
 exports.createTour = factory.createOne(Tour);
@@ -129,3 +95,73 @@ exports.getMonthlyPlan = catchAsync(async (req, res, next) => {
     },
   });
 });
+
+// /tours-within/:distance/center/:latlng/unit/:unit
+// /tours-within/233/center/34.111745,-118.113491/unit/mi
+exports.getToursWithin = catchAsync(async (req, res, next) => {
+  const { distance, latlng, unit } = req.params;
+  const [lat, lng] = latlng.split(',');
+
+  // radius is in radians
+  // 3963.2 - radius of earth in miles
+  // 6378.1 - radius of earth in kilometers
+  const radius = unit === 'mi' ? distance / 3963.2 : distance / 6378.1;
+
+  if (!lat || !lng) {
+    next(
+      new AppError(
+        'Please provide latitute and longitude in the format lat,lng.',
+        400
+      )
+    );
+  }
+
+  // algorithm to find tours within a radius from the point at lng, lat
+  const tours = await Tour.find({
+    startLocation: { $geoWithin: { $centerSphere: [[lng, lat], radius] } },
+  });
+
+  res.status(200).json({
+    status: 'success',
+    results: tours.length,
+    data: {
+      data: tours,
+    },
+  });
+});
+
+// exports.getAllTours = catchAsync(async (req, res, next) => {
+//   // EXECUTE QUERY
+//   const features = new APIFeatures(Tour.find(), req.query)
+//     .filter()
+//     .sort()
+//     .limitFields()
+//     .paginate();
+//   const tours = await features.query;
+
+//   // SEND RESPONSE
+//   res.status(200).json({
+//     status: 'success',
+//     requestedAt: req.requestTime,
+//     results: tours.length,
+//     data: {
+//       tours,
+//     },
+//   });
+// });
+// exports.getTour = catchAsync(async (req, res, next) => {
+//   // Tour.findOne({ _id: req.params.id })
+//   // const tour = await Tour.findById(req.params.id).populate('guides'); // get all properties of users table
+//   const tour = await Tour.findById(req.params.id).populate('reviews');
+
+//   if (!tour) {
+//     return next(new AppError('No tour found with that ID', 404));
+//   }
+
+//   res.status(200).json({
+//     status: 'success',
+//     data: {
+//       tour,
+//     },
+//   });
+// });

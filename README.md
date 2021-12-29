@@ -321,3 +321,17 @@ tourSchema.index({ startLocation: '2dsphere' });
 // ADD TEST CODE TO CONFIRM INDEXES WORKING in factory get method - handlerFactory.js.exports.getAll
 const doc = await features.query.explain();
 ```
+
+## Server-Side Rendering with Pug Templates
+
+[Top Express.js template engines fo Express](https://blog.logrocket.com/top-express-js-template-engines-for-dynamic-html-pages/)
+
+> Pug
+> EJS
+> Handlebars
+
+Setup Pug in app.js
+
+install Pug
+
+> npm i pug

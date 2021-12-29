@@ -74,7 +74,10 @@ app.use((req, res, next) => {
 // MOUNT ROUTER on each ROUTE
 
 app.get('/', (req, res) => {
-  res.status(200).render('base');
+  res.status(200).render('base', {
+    tour: 'The Forest Hiker',
+    user: 'Jones',
+  });
 });
 
 app.use('/api/v1/tours', tourRouter);

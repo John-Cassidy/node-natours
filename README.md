@@ -335,3 +335,26 @@ Setup Pug in app.js
 install Pug
 
 > npm i pug
+
+### Formatting pug files
+
+#### Pug beautify
+
+There is an extention to beautify Pug files [Pug beautify](https://marketplace.visualstudio.com/items?itemName=mrmlnc.vscode-pugbeautify)
+
+#### @prettier/plugin-pug
+
+Optional Prettier plugin [@prettier/plugin-pug](https://www.npmjs.com/package/@prettier/plugin-pug)
+[Documentation](https://prettier.github.io/plugin-pug/guide/)
+
+##### Install @prettier/plugin-pug
+
+> npm i -D @prettier/plugin-pug
+
+##### Usage @prettier/plugin-pug
+
+Prettier is setup to format on save so that should work. However, the package documentation says you can also use this command to update all pug files.
+
+```cmd
+npx prettier --write "**/*.pug"
+```

@@ -358,3 +358,9 @@ Prettier is setup to format on save so that should work. However, the package do
 ```cmd
 npx prettier --write "**/*.pug"
 ```
+
+## MapBox
+
+Create an account at mapbox.com
+
+NOTE - added Content-Security-Policy header to router that displays map: [Link](https://stackoverflow.com/questions/66650925/getting-error-message-while-try-to-load-mapbox)

@@ -187,7 +187,7 @@ npm i bcryptjs
 
 npm i jsonwebtoken
 
-### add evnironment variables to .env file
+### add JWT environment variables to .env file
 
 JWT_SECRET=my-ultra-secure-and-ultra-long-secret
 JWT_EXPIRES_IN=90d
@@ -364,3 +364,7 @@ npx prettier --write "**/*.pug"
 Create an account at mapbox.com
 
 NOTE - added Content-Security-Policy header to router that displays map: [Link](https://stackoverflow.com/questions/66650925/getting-error-message-while-try-to-load-mapbox)
+
+### add MAPBOX environment variables to .env file
+
+MAPBOX_TOKEN=token

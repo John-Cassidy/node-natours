@@ -1,7 +1,7 @@
 const Tour = require('../models/tourModel');
 const catchAsync = require('../utils/catchAsync');
 const factory = require('./handlerFactory');
-const AppError = require('./../utils/appError');
+const AppError = require('../utils/appError');
 
 // ROUTER MIDDLEWARE
 exports.aliasTopTours = (req, res, next) => {

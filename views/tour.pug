@@ -81,7 +81,10 @@ block content
         )
 
   section.section-map
-    #map(data-locations=`${JSON.stringify(tour.locations)}`)
+    #map(
+      data-locations=`${JSON.stringify(tour.locations)}`,
+      data-token=`${token}`
+    )
 
   section.section-reviews
     .reviews

@@ -237,6 +237,12 @@ npm i express-rate-limit
 
 npm i helmet
 
+#### review how to add helment contentSecurityPolicies
+
+[Helmet](https://helmetjs.github.io/)
+[StackOverflow](https://stackoverflow.com/questions/67601708/axios-cdn-link-refused-to-load)
+[StackOverflow](https://stackoverflow.com/questions/64762132/how-do-i-set-up-helmet-js-correctly-to-resolve-csp-issue)
+
 ### NOSQL QUERY INJECTION
 
 > Use mongoose for MongoDB (because of SchemaTypes)
@@ -368,3 +374,9 @@ NOTE - added Content-Security-Policy header to router that displays map: [Link](
 ### add MAPBOX environment variables to .env file
 
 MAPBOX_TOKEN=token
+
+## Login Users
+
+### install cookie-parser
+
+> npm i cookie-parser

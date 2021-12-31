@@ -13,6 +13,7 @@ const tourRouter = require('./routes/tourRoutes');
 const userRouter = require('./routes/userRoutes');
 const reviewRouter = require('./routes/reviewRoutes');
 const viewRouter = require('./routes/viewRoutes');
+const cookieParser = require('cookie-parser');
 
 const app = express();
 
@@ -26,7 +27,34 @@ app.set('views', path.join(__dirname, 'views'));
 app.use(express.static(`${__dirname}/public`));
 
 // Set security HTTP headers
-app.use(helmet());
+const scriptSources = [
+  "'self'",
+  'http:',
+  'https:',
+  'blob:',
+  "'unsafe-inline'",
+  "'unsafe-eval'",
+];
+const styleSources = ["'self'", 'https:'];
+const fontSources = ["'self'", 'https:'];
+const connectSources = ["'self'", 'http:'];
+app.use(
+  helmet.contentSecurityPolicy({
+    directives: {
+      defaultSrc: ["'self'", 'data:', 'blob:', 'http:'],
+      scriptSrc: scriptSources,
+      scriptSrcElem: scriptSources,
+      styleSrc: styleSources,
+      fontSrc: fontSources,
+      connectSrc: connectSources,
+    },
+  })
+);
+app.use(
+  helmet({
+    contentSecurityPolicy: false,
+  })
+);
 
 if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'));
@@ -42,6 +70,7 @@ app.use('/api', limiter);
 
 // Body parser, reading data from body into req.body
 app.use(express.json({ limit: '10kb' }));
+app.use(cookieParser());
 // app.use(express.json()); // add body of request to req object
 
 // Data sanitization against NoSQL query injection
@@ -69,6 +98,8 @@ app.use((req, res, next) => {
   req.requestTime = new Date().toISOString();
   // eslint-disable-next-line no-console
   console.log(req.headers);
+  // eslint-disable-next-line no-console
+  console.log(req.cookies);
   next();
 });
 

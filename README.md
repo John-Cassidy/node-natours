@@ -381,3 +381,18 @@ MAPBOX_TOKEN=token
 
 > npm i cookie-parser
 
+## Add Bundler
+
+We are using [Parcel](https://parceljs.org/) to bundle js scripts
+
+The original documentation instructions are to install parcel-bundler like below:
+
+> npm i -D parcel-bundler@1.12.3
+
+The problem is that Parcel v2 package name has changed:
+
+> npm i -D parcel
+
+### Package name
+
+The first thing to note when upgrading from Parcel 1 to Parcel 2 is that the npm package name has changed from parcel-bundler to parcel. You'll need to update the dependencies in your package.json accordingly.

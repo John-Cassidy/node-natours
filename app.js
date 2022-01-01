@@ -35,13 +35,31 @@ const scriptSources = [
   "'unsafe-inline'",
   "'unsafe-eval'",
 ];
-const styleSources = ["'self'", 'https:'];
-const fontSources = ["'self'", 'https:'];
-const connectSources = ["'self'", 'http:'];
+const styleSources = [
+  "'self'",
+  'http:',
+  'https:',
+  "'unsafe-inline'",
+  "'unsafe-eval'",
+];
+const fontSources = [
+  "'self'",
+  'http:',
+  'https:',
+  "'unsafe-inline'",
+  "'unsafe-eval'",
+];
+const connectSources = [
+  "'self'",
+  'http:',
+  'https:',
+  "'unsafe-inline'",
+  "'unsafe-eval'",
+];
 app.use(
   helmet.contentSecurityPolicy({
     directives: {
-      defaultSrc: ["'self'", 'data:', 'blob:', 'http:'],
+      defaultSrc: ["'self'", 'data:', 'blob:', 'http:', 'https:'],
       scriptSrc: scriptSources,
       scriptSrcElem: scriptSources,
       styleSrc: styleSources,

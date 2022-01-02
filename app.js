@@ -53,6 +53,7 @@ const connectSources = [
   "'self'",
   'http:',
   'https:',
+  'ws:',
   "'unsafe-inline'",
   "'unsafe-eval'",
 ];

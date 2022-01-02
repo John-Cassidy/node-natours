@@ -389,10 +389,20 @@ The original documentation instructions are to install parcel-bundler like below
 
 > npm i -D parcel-bundler@1.12.3
 
+### Package name
+
 The problem is that Parcel v2 package name has changed:
 
 > npm i -D parcel
 
-### Package name
-
 The first thing to note when upgrading from Parcel 1 to Parcel 2 is that the npm package name has changed from parcel-bundler to parcel. You'll need to update the dependencies in your package.json accordingly.
+
+### Modify JS files to use import/export
+
+Install axios
+
+> npm i axios
+
+Install @babel/polyfill - If you want to functionality to work with older browsers
+
+> npm i @babel/polyfill

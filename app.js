@@ -89,6 +89,7 @@ app.use('/api', limiter);
 
 // Body parser, reading data from body into req.body
 app.use(express.json({ limit: '10kb' }));
+app.use(express.urlencoded({ extended: true, limit: '10kb' }));
 app.use(cookieParser());
 // app.use(express.json()); // add body of request to req object
 
@@ -129,7 +130,11 @@ app.use('/api/v1/users', userRouter);
 app.use('/api/v1/reviews', reviewRouter);
 
 app.all('*', (req, res, next) => {
-  next(new AppError(`Can't find ${req.originalUrl} on this server!`, 404));
+  if (req.originalUrl === `/bundle.js.map`) {
+    next();
+  } else {
+    next(new AppError(`Can't find ${req.originalUrl} on this server!`, 404));
+  }
 });
 
 app.use(globalErrorHandler);

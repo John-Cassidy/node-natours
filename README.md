@@ -412,3 +412,7 @@ Install @babel/polyfill - If you want to functionality to work with older browse
 Use file upload middleware - multer
 
 > npm i multer
+
+Use file resize middleware - sharp
+
+> npm i sharp

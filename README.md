@@ -416,3 +416,18 @@ Use file upload middleware - multer
 Use file resize middleware - sharp
 
 > npm i sharp
+
+## Email using pug, html-to-text, and SendGrid
+
+Use html-to-text middleware to Render HTML based on a pug template
+
+> npm i html-to-text
+
+Email template adapted from [https://github.com/leemunroe/responsive-html-email-template](https://github.com/leemunroe/responsive-html-email-template)
+
+Converted from HTML using [HTML-TO-PUG](https://html2pug.now.sh/)
+
+Use SendGrid.com to Send emails in production
+
+> create an account and setup SMTP Relay
+> add env variables to env file: SENDGRID_USERNAME, SENDGRID_PASSWORD

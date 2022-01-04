@@ -406,3 +406,9 @@ Install axios
 Install @babel/polyfill - If you want to functionality to work with older browsers
 
 > npm i @babel/polyfill
+
+## File Upload
+
+Use file upload middleware - multer
+
+> npm i multer

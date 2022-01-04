@@ -116,10 +116,8 @@ app.use(
 
 app.use((req, res, next) => {
   req.requestTime = new Date().toISOString();
-  // eslint-disable-next-line no-console
-  console.log(req.headers);
-  // eslint-disable-next-line no-console
-  console.log(req.cookies);
+  // console.log(req.headers);
+  // console.log(req.cookies);
   next();
 });
 

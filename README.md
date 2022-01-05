@@ -431,3 +431,18 @@ Use SendGrid.com to Send emails in production
 
 > create an account and setup SMTP Relay
 > add env variables to env file: SENDGRID_USERNAME, SENDGRID_PASSWORD
+
+## ECommerce Payment processing
+
+setup stripe account - stripe.com
+
+get test API keys:
+
+> publishable key - used on frontend
+> secret key - used on backend
+
+search stripe documentation for instructions on setting up [STRIPE CHECKOUT](https://stripe.com/docs/checkout/quickstart)
+
+install stripe package
+
+> npm i stripe

@@ -446,3 +446,7 @@ search stripe documentation for instructions on setting up [STRIPE CHECKOUT](htt
 install stripe package
 
 > npm i stripe
+
+## use Express instead of Body parser for reading data from body into req.body
+
+[Express JS -- body-parser and why you may not need it](https://medium.com/@mmajdanski/express-body-parser-and-why-may-not-need-it-335803cd048c)
